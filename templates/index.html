@@ -1,0 +1,133 @@
+{% extends "base.html" %}
+
+{% block title %}Adjoint Matrix - Input{% endblock %}
+
+{% block content %}
+<h1>Matrix</h1>
+<style>
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.form-container {
+    text-align: center;
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+
+input {
+    padding: 5px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+input[type="submit"] {
+    padding: 15px 25px;
+    font-size: 16px;
+    color: #fff; /* Text color of the button */
+    background-color: #f5eaea83; /* Background color of the button */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background-color: #e9ebee24; /* Background color of the button on hover */
+}
+.small_table input {
+    width: 100px;
+    font-size: 15px; 
+
+}
+
+</style>
+</style>
+<center>
+<form action="/" method="post">
+    <label for="rows">Enter the number of rows:</label>
+    <input type="number" name="rows" id="rows" required><br>
+
+    <label for="columns">Enter the number of columns:</label>
+    <input type="number" name="columns" id="columns" required><br>
+
+    <h2>Select the operation:</h2>
+    <label for="adjoint">Adjoint</label>
+    <input type="radio" name="operation" value="adjoint" id="adjoint" required>
+    
+
+    <label for="inverse">Inverse</label>
+    <input type="radio" name="operation" value="inverse" id="inverse">
+    
+    
+
+    <h2>Input Matrix:</h2>
+    <table id="inputMatrix" class="small_table">
+        <!-- Dynamic table content will be added here -->
+    </table>
+
+    <input type="submit" value="Calculate">
+</form>
+</center>
+
+<script>
+    var rowsInput = document.getElementById('rows');
+    var columnsInput = document.getElementById('columns');
+    var inputMatrixTable = document.getElementById('inputMatrix');
+
+    function createInputRow(rowNumber, columnCount) {
+        var row = document.createElement('tr');
+        for (var j = 0; j < columnCount; j++) {
+            var cell = document.createElement('td');
+            var input = document.createElement('input');
+            input.setAttribute('type', 'number');
+            input.setAttribute('name', `element-${rowNumber}-${j}`);
+            input.setAttribute('required', 'true');
+            cell.appendChild(input);
+            row.appendChild(cell);
+        }
+        return row;
+    }
+
+    rowsInput.addEventListener('input', function () {
+        var rowCount = parseInt(rowsInput.value);
+        while (inputMatrixTable.firstChild) {
+            inputMatrixTable.removeChild(inputMatrixTable.firstChild);
+        }
+        for (var i = 0; i < rowCount; i++) {
+            var inputRow = createInputRow(i, parseInt(columnsInput.value));
+            inputMatrixTable.appendChild(inputRow);
+        }
+    });
+
+    columnsInput.addEventListener('input', function () {
+        var columnCount = parseInt(columnsInput.value);
+        var rowsCount = inputMatrixTable.children.length;
+        for (var i = 0; i < rowsCount; i++) {
+            var row = inputMatrixTable.children[i];
+            while (row.firstChild) {
+                row.removeChild(row.firstChild);
+            }
+            for (var j = 0; j < columnCount; j++) {
+                var cell = document.createElement('td');
+                var input = document.createElement('input');
+                input.setAttribute('type', 'number');
+                input.setAttribute('name', `element-${i}-${j}`);
+                input.setAttribute('required', 'true');
+                cell.appendChild(input);
+                row.appendChild(cell);
+            }
+        }
+    });
+</script>
+{% endblock %}

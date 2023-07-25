@@ -1,0 +1,106 @@
+{% extends "base.html" %}
+
+{% block title %}Adjoint Matrix - Result{% endblock %}
+
+{% block content %}
+<style>
+    .container {
+            max-width: 1000px;
+            padding: 100px;
+            background-color: hsla(0, 0%, 100%, 0.464);
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+</style>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Matrix Operations Result </title>
+</head>
+<body>
+    <center>
+    <h1>Matrix Operations Result</h1>
+    <h2>Original Input Matrix</h2>
+    <table>
+        {% for row in input_matrix_data %}
+            <tr>
+                {% for element in row %}
+                    <td>{{ element }}</td>
+                {% endfor %}
+            </tr>
+        {% endfor %}
+    </table>
+    <table>
+        {% for row in input_matrix_data_inverse %}
+            <tr>
+                {% for element in row %}
+                    <td>{{ element }}</td>
+                {% endfor %}
+            </tr>
+        {% endfor %}
+    </table>
+   
+    
+    <h2>Result of Matrix</h2>
+    <table>
+        {% for row in adjoint_matrix_data %}
+            <tr>
+                {% for element in row %}
+                    <td>{{ element }}</td>
+                {% endfor %}
+            </tr>
+        {% endfor %}
+    </table>
+    
+    <table>
+        {% for row in inverse_matrix_data %}
+            <tr>
+                {% for element in row %}
+                    <td>{{ element }}</td>
+                {% endfor %}
+            </tr>
+        {% endfor %}
+    </table>
+
+    <h2>Steps for Calculation</h2>
+    <ul>
+        {% for step in steps_data %}
+        <li>
+            <p>Step {{ loop.index }}: Cofactor at ({{ step.0 + 1 }}, {{ step.1 + 1 }})</p>
+            <table border="1">
+                {% for row in step.2 %}
+                    <tr>
+                        {% for element in row %}
+                            <td>{{ element }}</td>
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
+            </table>
+            <p>Cofactor Value: {{ step.3 }}</p>
+        </li>
+        {% endfor %}
+    </ul>
+
+    <ul>
+        {% for step in steps_data_inverse %}
+            <li>
+                <p>Step {{ loop.index }}: Cofactor at ({{ step.0 + 1 }}, {{ step.1 + 1 }})</p>
+                <table border="1">
+                    {% for row in step.2 %}
+                        <tr>
+                            {% for element in row %}
+                                <td>{{ element }}</td>
+                            {% endfor %}
+                        </tr>
+                    {% endfor %}
+                </table>
+                <p>Cofactor Value: {{ step.3 }}</p>
+            </li>
+        {% endfor %}
+    </ul>
+</center>
+</body>
+</html>
+
+
+{% endblock %}

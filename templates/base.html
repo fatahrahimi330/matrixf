@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}Adjoint Matrix{% endblock %}</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: sans-serif;
+        }
+
+        body {
+            width: 100%;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-image: url("{{ url_for('static', filename='background.png') }}");
+            background-size: cover;
+            background-position: center;
+        }
+    
+
+        .container {
+
+            max-width: 1000px;
+            padding: 80px;
+            background-color: hsla(0, 0%, 100%, 0.464);
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            margin-bottom: 20px;
+            border-collapse: collapse;
+            background-color: hsla(0, 0%, 100%, 0);
+        }
+
+        th, td {
+            padding: 8px;
+            border-bottom: 1px solid hwb(0 87% 13% / 0);
+            text-align: center;
+        }
+        .txt{
+            color: #fcfefe;
+            font-size: 7px;
+            margin-top: 50px;
+            position: absolute;
+            bottom: -5%;
+            left: 1%;
+        }
+        .web{
+            position: absolute;
+            top: 5%;
+            left: 1%;
+            font-size: 30px;
+            line-height: 160px;
+            margin-left: 50px;
+            color: transparent;
+            -webkit-text-stroke: 1px #fff;
+            background: url("{{ url_for('static', filename='back.png') }}");
+            -webkit-background-clip: text;
+            background-position: 0;
+            animation: back 5s linear infinite;
+            
+            
+        }
+        @keyframes back{
+            100%{
+                background-position: 300px;
+            }
+        }
+        .bubbles img{
+            width: 50px;
+            animation: bubble 7s linear infinite;
+        }
+        .bubbles{
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            position: absolute;
+            bottom: -70px;
+            
+        }
+        @keyframes bubble{
+            0%{
+                transform: translateY(0);
+                opacity: 0;
+            }
+            50%{
+
+                opacity: 1;
+            }
+            70%{
+        
+                opacity: 1;
+            }
+            100%{
+                transform: translateY(-80vh);
+                opacity: 0;
+            }
+        }
+        .bubbles img:nth-child(1){
+            animation-delay: 2s;
+            width: 25px;
+        }
+        .bubbles img:nth-child(2){
+            animation-delay: 1s;
+        }
+        .bubbles img:nth-child(3){
+            animation-delay: 3s;
+            width: 25px;
+        }
+        .bubbles img:nth-child(4){
+            animation-delay: 4s;
+        }
+        .bubbles img:nth-child(5){
+            animation-delay: 2s;
+        }
+        .bubbles img:nth-child(6){
+            animation-delay: 6s;
+            width: 20px;
+        }
+        .bubbles img:nth-child(7){
+            animation-delay: 7s;
+            width: 35px;
+        }
+        .social-icon{
+            position: absolute;
+            right: 5%;
+            bottom: 8%;
+        }
+        .social-icon{
+            width: 25px;
+            display: block;
+            margin: 25px 5px ;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        {% block content %}
+        {% endblock %}
+    </div>
+    <div class = "txt">
+        <h1> Designed by: Fatah Rahimi</h1>
+    </div>
+    
+    <div class = "web">
+        <h1>My App Web</h1>
+    </div>
+    <div class="bubbles">
+        <img src="static\bubble.png">
+        <img src="static\bubble.png">
+        <img src="static\bubble.png">
+        <img src="static\bubble.png">
+        <img src="static\bubble.png">
+        <img src="static\bubble.png">
+        <img src="static\bubble.png">
+        <img src="static\bubble.png">
+    </div>
+    <div class="social-icon">
+        <a href="https://www.facebook.com/fatah.rahame"><img src="static\R.png" width="25"></a>
+        <a href="https://web.telegram.org/k/"><img src="static\telegram.png" width="25"></a>
+        <a href="https://www.instagram.com/fatah_rahimi_/"><img src="static\instagram.png" width="25"></a>
+
+    </div>
+</body>
+</html>
